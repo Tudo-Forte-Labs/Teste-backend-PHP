@@ -16,7 +16,7 @@ class CreateProductManufacturersTable extends Migration
         Schema::create('product_manufacturers', function (Blueprint $table) {
             $table->id();
             $table->integer('product_id');
-            $table->integer('manufactaruers_id');
+            $table->integer('manufacturer_id');
             $table->timestamps();
         });
     }
