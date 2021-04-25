@@ -18,9 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function() {
 
-    Route::resource('products', ProductsController::class)->only([
-        'show'
-    ]);
+    Route::resource('products', ProductsController::class, ['parameters' => [
+                        'products' => 'sku'
+                    ]])->only([
+                        'index','show' 
+                    ]);
 
     Route::resource('orders', OrdersController::class)->only([
         'show', 'store'

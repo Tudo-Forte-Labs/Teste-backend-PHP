@@ -7,12 +7,11 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
+    public function index(Request $request)
+    {
+        //
+    }
+
     public function show(Product $product)
     {
         //
