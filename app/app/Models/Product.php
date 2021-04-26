@@ -36,19 +36,9 @@ class Product extends Model
     {
         $query->whereIn('sku', $skus);
     }
-
-    public function scopeFindSku(Builder $query, $sku)
-    {
-        $query->where('sku', $sku);
-    }
-
-    public function scopeSearchName(Builder $query, $name)
-    {
-        $query->search('name', $name);
-    }
     
     public function resolveRouteBinding($value, $field = null)
     {
-        return $this->findSku($value)->firstOrFail();
+        return $this->where('sku', $value)->firstOrFail();
     }
 }
