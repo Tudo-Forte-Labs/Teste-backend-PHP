@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Services\Handlers\OrderHandler;
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Models\Product;
 use Exception;
@@ -39,11 +40,11 @@ class OrdersController extends Controller
             Log::error($e->getMessage());
         }
 
-        return response($order->serialize(), 200);
+        return new OrderResource($order);
     }
 
     public function show(Order $order)
     {
-        //
+        return new OrderResource($order);
     }
 }

@@ -21,29 +21,4 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class, 'products_orders');
     }
-
-    public function serialize()
-    {
-        $response = [ 
-            'total' => $this->total,
-            'date_sale' => $this->date_sale
-        ];
-
-        foreach ( $this->products as $key => $product ) {
-            
-            $response['products'][$key] = [
-                'name' => $product->name,
-                'price' => $product->price,
-            ];
-
-            foreach ( $product->manufacturers as $id => $manufacturer ) {
-                $response['products'][$key]['manufacturer'][$id] = [
-                    'id' => $manufacturer->id,
-                    'name' => $manufacturer->name
-                ];
-            }
-        }
-        
-        return $response;
-    }
 }
