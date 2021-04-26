@@ -12,13 +12,13 @@ class OrderHandler {
     public function prepare (Request $request)
     {
         $response = json_decode($request->getContent());
-
+        
         try {
             $response->date_sale = Carbon::createFromDate($response->date_sale);
         }
         catch(Exception $e) {
             Log::error($e->getMessage());
-            $response->date_sale = null;
+            $response->date_sale = Carbon::now();
         }
 
         return $response;

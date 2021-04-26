@@ -13,7 +13,14 @@ class ProductsController extends Controller
     {
         $name = $request->get('name');
 
-        return new ProductCollection(Product::search($name)->get());
+        $products = Product::search($name)->get();
+
+        if (count($products) > 0 ) {
+            return new ProductCollection($products);
+        }
+        else {
+            return response('Not found', 404);
+        }
     }
 
     public function show(Product $product)
