@@ -17,10 +17,10 @@ A estrutura de arquivos se encontra da seguinte maneira:
 Execute os comandos a baixo, na ordem que são demonstrados, para subir a aplicação:
 ```code
 make docker
-docker-exec -it lamp-php8 bash
+docker exec -it lamp-php8 bash
 cd /var/www/app
-make deps
 make init 
+make deps
 ```
 Ao acessar `http://localhost` você deve se deparar com a página de boas vindas.
 
