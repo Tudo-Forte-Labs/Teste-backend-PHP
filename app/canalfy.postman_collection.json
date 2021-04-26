@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "57f22332-c37c-4b61-8741-4aacabc69765",
+		"name": "canalfy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date_sale\": \"2021-25\",\n    \"products\": [\n        2929095,\n        7595060,\n        2442072\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/{{API_VERSION}}/orders",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{API_VERSION}}",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get order",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{API_VERSION}}/orders/28",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{API_VERSION}}",
+								"orders",
+								"28"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get Product by sku",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{API_VERSION}}/products/7595060",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{API_VERSION}}",
+								"products",
+								"7595060"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/{{API_VERSION}}/products?name=Ve",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"{{API_VERSION}}",
+								"products"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Ve"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
