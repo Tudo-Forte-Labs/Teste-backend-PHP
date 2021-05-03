@@ -7,7 +7,7 @@ use App\Models\Supplier;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ProductTest extends TestCase
+class ProductControllerTest extends TestCase
 {
     use RefreshDatabase;
     protected function setUp(): void

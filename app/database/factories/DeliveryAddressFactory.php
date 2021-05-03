@@ -2,18 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Product;
-use App\Models\Supplier;
+use App\Models\City;
+use App\Models\DeliveryAddress;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProductFactory extends Factory
+class DeliveryAddressFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Product::class;
+    protected $model = DeliveryAddress::class;
 
     /**
      * Define the model's default state.
@@ -23,11 +23,11 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'reference' => $this->faker->unique()->text(10),
-            'price' => $this->faker->randomFloat(2, 1, 1000),
-            'supplier_id' => function () {
-                return SupplierFactory::create()->id;
+            'address' => $this->faker->address,
+            'number' => $this->faker->randomNumber(3),
+            'zip' => $this->faker->randomNumber(8),
+            'city_id' => function () {
+                return City::factory()->create()->id;
             },
             'deleted_at' => null
         ];
