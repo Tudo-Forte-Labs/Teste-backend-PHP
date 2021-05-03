@@ -47,7 +47,9 @@ class OrderControllerTest extends TestCase
 
         $response = $this->post(route('order.create'), [
             'address' => $deliveryAddress->toArray(),
-            'products' => $products->map->only('id')
+            'products' => $products->map(function ($product) {
+                return $product['id'];
+            })
         ], [
             'Accept' => 'application/json'
         ]);
