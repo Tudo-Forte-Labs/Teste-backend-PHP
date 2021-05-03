@@ -14,6 +14,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'reference',
+        'price',
         'supplier_id'
     ];
 
@@ -26,5 +27,9 @@ class Product extends Model
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
+    }
+
+    public function orders() {
+        $this->belongsToMany(Order::class);
     }
 }
