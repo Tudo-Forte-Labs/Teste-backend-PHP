@@ -30,7 +30,7 @@ class ProductService implements InterfaceSearchableProduct
 
     function byReference(string $reference): Collection
     {
-        return Product::whereLike('name', $reference)
+        return Product::whereLike('reference', $reference)
             ->get();
     }
 }
