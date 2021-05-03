@@ -15,6 +15,10 @@ class Order extends Model
         'delivery_address_id',
     ];
 
+    protected $appends = [
+        'orderPrice'
+    ];
+
     public function getOrderPriceAttribute()
     {
         return $this->products()->sum('price');
