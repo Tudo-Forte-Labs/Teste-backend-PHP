@@ -25,6 +25,7 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'reference' => $this->faker->unique()->text(10),
+            'price' => $this->faker->randomFloat(2, 1, 1000),
             'supplier_id' => function () {
                 return SupplierFactory::create()->id;
             },
