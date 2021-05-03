@@ -15,7 +15,7 @@ class Order extends Model
         'delivery_address_id',
     ];
 
-    public function orderPriceAttribute()
+    public function getOrderPriceAttribute()
     {
         return $this->products()->sum('price');
     }
