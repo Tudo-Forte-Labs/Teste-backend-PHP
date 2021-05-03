@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contracts\InterfaceSearchableProduct;
+use App\Services\Api\v1\ProductService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app
+            ->bind(InterfaceSearchableProduct::class,
+                ProductService::class);
     }
 
     /**
