@@ -6,12 +6,11 @@ namespace App\Services\Api\v1;
 
 use App\Contracts\InterfaceSearchableProduct;
 use App\Models\Product;
-use Illuminate\Support\Collection;
 
 class ProductService implements InterfaceSearchableProduct
 {
 
-    public function searchForProduct(array $input)
+    public function searchForProduct(array $input): array
     {
         $results = [];
         if (isset($input['name'])) {
@@ -22,15 +21,15 @@ class ProductService implements InterfaceSearchableProduct
         return $results;
     }
 
-    function byName(string $name): Collection
+    public function byName(string $name): array
     {
         return Product::whereLike('name', $name)
-            ->get();
+            ->get()->toArray();
     }
 
-    function byReference(string $reference): Collection
+    public function byReference(string $reference): array
     {
         return Product::whereLike('reference', $reference)
-            ->get();
+            ->get()->toArray();
     }
 }

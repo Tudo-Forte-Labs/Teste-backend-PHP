@@ -4,11 +4,9 @@
 namespace App\Contracts;
 
 
-use Illuminate\Support\Collection;
-
 interface InterfaceSearchableProduct
 {
-    function byName(string $name): Collection;
+    function byName(string $name): array;
 
-    function byReference(string $reference): Collection;
+    function byReference(string $reference): array;
 }
