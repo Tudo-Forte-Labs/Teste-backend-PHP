@@ -64,6 +64,7 @@ class OrderServiceTest extends TestCase
         });
 
         $testData['address'] = $addressInstance->toArray();
+        $testData['order_date'] = '01/01/2021';
 
         $orderService = new OrderService();
 

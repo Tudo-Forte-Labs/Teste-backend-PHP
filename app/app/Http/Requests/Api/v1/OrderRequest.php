@@ -11,7 +11,8 @@ class OrderRequest extends FormRequest
         'address.zip' => 'required|string|max:8',
         'address.number' => 'nullable|int',
         'address.city_id' => 'required|exists:cities,id',
-        'products.*.id' => 'required|exists:products,id'
+        'products.*.id' => 'required|exists:products,id',
+        'order_date' => 'nullable|date_format:d/m/Y'
     ];
 
     /**

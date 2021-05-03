@@ -13,10 +13,11 @@ class Order extends Model
 
     protected $fillable = [
         'delivery_address_id',
+        'created_at'
     ];
 
     protected $appends = [
-        'orderPrice'
+        'orderPrice',
     ];
 
     public function getOrderPriceAttribute()
@@ -24,9 +25,14 @@ class Order extends Model
         return $this->products()->sum('price');
     }
 
-    public function orderDate()
+    public function getOrderDateAttribute()
     {
         return $this->attributes['created_at']->format('d/m/Y');
+    }
+
+    public function setOrderDateAttribute($value)
+    {
+        $this->attributes['created_at'] = $value;
     }
 
     public function deliveryAddress()
