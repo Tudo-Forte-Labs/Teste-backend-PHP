@@ -36,4 +36,13 @@ class OrderControllerTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_if_it_validates_the_input()
+    {
+        $response = $this->post(route('order.create'), [], [
+            'Accept' => 'application/json'
+        ]);
+
+        $response->assertStatus(422);
+    }
 }
