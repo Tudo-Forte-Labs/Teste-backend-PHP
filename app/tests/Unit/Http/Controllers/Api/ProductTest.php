@@ -23,7 +23,8 @@ class ProductTest extends TestCase
     public function test_if_it_finds_a_product()
     {
         $product = Product::factory()
-            ->for(Supplier::factory())->create();
+            ->for(Supplier::factory())
+            ->create();
 
         $response = $this->get('api/v1/product/search?name='.$product->name);
 
