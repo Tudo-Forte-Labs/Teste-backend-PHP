@@ -25,4 +25,7 @@ Route::group(['prefix' => 'v1'], function () {
 
    Route::get('order/{order}', 'App\Http\Controllers\Api\v1\OrderController@byId')
        ->name('order.byId');
+
+   Route::post('order', 'App\Http\Controllers\Api\v1\OrderController@store')
+       ->name('order.create');
 });

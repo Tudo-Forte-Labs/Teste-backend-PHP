@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class ProductRequest extends FormRequest
 {
 
-    private $searchRues = [
+    private $searchRules = [
         'name' => 'string',
         'reference' => 'required_without:name|string'
     ];
@@ -31,7 +31,7 @@ class ProductRequest extends FormRequest
     {
         switch ($this->route()->getName()) {
             case 'product.search':
-                return $this->searchRues;
+                return $this->searchRules;
         }
     }
 }
