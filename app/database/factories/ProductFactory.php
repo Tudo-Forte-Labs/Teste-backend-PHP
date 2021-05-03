@@ -27,7 +27,7 @@ class ProductFactory extends Factory
             'reference' => $this->faker->unique()->text(10),
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'supplier_id' => function () {
-                return SupplierFactory::create()->id;
+                return Supplier::factory()->create()->id;
             },
             'deleted_at' => null
         ];
