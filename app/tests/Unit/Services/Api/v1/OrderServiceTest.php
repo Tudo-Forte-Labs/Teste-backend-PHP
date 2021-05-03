@@ -31,11 +31,7 @@ class OrderServiceTest extends TestCase
 
         $orderService = new OrderService();
 
-
-
         $retrievedOrder = $orderService->loadProductsAndSuppliers($order);
-
-        var_dump($retrievedOrder);
 
         $this->assertArrayHasKey('products', $retrievedOrder);
         $this->assertCount(2, $retrievedOrder['products']);
