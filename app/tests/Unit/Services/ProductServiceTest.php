@@ -22,7 +22,7 @@ class ProductServiceTest extends TestCase
 
         $results = $productService->searchForProduct([]);
 
-        $this->assertEquals([], $results);
+        $this->assertEmpty($results);
     }
 
     public function test_if_it_finds_product_by_name()
