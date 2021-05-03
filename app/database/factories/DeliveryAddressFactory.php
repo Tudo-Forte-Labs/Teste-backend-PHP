@@ -25,7 +25,7 @@ class DeliveryAddressFactory extends Factory
         return [
             'address' => $this->faker->address,
             'number' => $this->faker->randomNumber(3),
-            'zip' => $this->faker->randomNumber(8),
+            'zip' => $this->faker->text(8),
             'city_id' => function () {
                 return City::factory()->create()->id;
             },
