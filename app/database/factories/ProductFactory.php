@@ -27,7 +27,8 @@ class ProductFactory extends Factory
             'reference' => $this->faker->unique()->text(10),
             'supplier_id' => function () {
                 return SupplierFactory::create()->id;
-            }
+            },
+            'deleted_at' => null
         ];
     }
 }
