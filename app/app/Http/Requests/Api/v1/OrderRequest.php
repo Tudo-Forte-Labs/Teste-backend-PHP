@@ -7,10 +7,11 @@ use Illuminate\Foundation\Http\FormRequest;
 class OrderRequest extends FormRequest
 {
     private $newOrderRules = [
-        'address' => 'required|string|max:255',
-        'zip' => 'required|string|max:8',
-        'number' => 'nullable|int',
-        'city_id' => 'required|exists:cities,id'
+        'address.address' => 'required|string|max:255',
+        'address.zip' => 'required|string|max:8',
+        'address.number' => 'nullable|int',
+        'address.city_id' => 'required|exists:cities,id',
+        'products.*.id' => 'required|exists:products,id'
     ];
 
     /**
