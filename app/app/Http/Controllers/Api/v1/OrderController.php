@@ -24,6 +24,10 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request)
     {
+        $requestData = $request->all();
+        $createdOrder = $this->orderService
+            ->storeNewOrder($requestData);
 
+        return response($createdOrder, 201);
     }
 }
