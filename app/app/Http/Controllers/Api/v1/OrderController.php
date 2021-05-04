@@ -61,12 +61,34 @@ class OrderController extends Controller
      *                 @OA\Property(
      *                     property="address",
      *                     type="object",
-     *                     description="object containing delivery_address attributes"
+     *                     description="object containing delivery_address attributes",
+     *                     @OA\Property(
+     *                         property="address",
+     *                         type="string",
+     *                         description="address line"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="zip",
+     *                         type="string",
+     *                         description="zip number"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="number",
+     *                         type="integer",
+     *                         description="address number"
+     *                     ),
+     *                     @OA\Property(
+     *                         property="city_id",
+     *                         type="integer",
+     *                         description="id of the city"
+     *                     ),
      *                 ),
      *                 @OA\Property(
      *                     property="products",
      *                     type="array",
-     *                     items="[]",
+     *                     @OA\Items(
+     *                         type="integer"
+     *                     ),
      *                     description="array of product id"
      *                 ),
      *                 @OA\Property(
