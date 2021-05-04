@@ -16,12 +16,89 @@ class OrderController extends Controller
     {
         $this->orderService = $orderService;
     }
+    /** @OA\Info(title="Sistema de vendas", version="0.1") */
 
+    /**
+     * @OA\Get(
+     *     path="/order/{orderId}",
+     *     tags={"order"},
+     *     summary="Finds Order by id",
+     *     description="Orders will have their products, purchase date and total price",
+     *     @OA\Parameter(
+     *         name="order",
+     *         in="query",
+     *         description="Id of the order",
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(
+     *             type="object"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Order with specified it not found"
+     *     ),
+     *   )
+     */
     public function byId(Request $request, Order $order)
     {
         return response($this->orderService->loadProductsAndSuppliers($order));
     }
 
+    /**
+     * @OA\Post(
+     *     path="/order",
+     *     tags={"order"},
+     *     summary="Stores a new order",
+     *     description="Store a new order with its products and delivery address",
+     *     @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="address",
+     *                     type="object",
+     *                     description="object containing delivery_address attributes"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="products",
+     *                     type="array",
+     *                     items="[]",
+     *                     description="array of product id"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="order_date",
+     *                     type="string",
+     *                     description="the date of the order"
+     *                 ),
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="successful operation",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             description="Object of the created order"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             description="Object containing information about the validatio errors"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Order with specified it not found"
+     *     ),
+     *   )
+     */
     public function store(OrderRequest $request)
     {
         $requestData = $request->all();
