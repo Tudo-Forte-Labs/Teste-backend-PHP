@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Unit\Http\Controllers\Api;
+namespace Tests\Unit\Http\Controllers\Api\v1;
 
 use App\Models\Product;
 use App\Models\Supplier;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ProductControllerTest extends TestCase
 {
