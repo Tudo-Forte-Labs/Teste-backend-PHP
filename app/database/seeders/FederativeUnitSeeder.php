@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\FederativeUnit;
 
-class StateSeeder extends Seeder
+class FederativeUnitSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,111 +15,111 @@ class StateSeeder extends Seeder
     public function run()
     {
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Acre',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Alagoas',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Amapá',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Amazonas',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Bahia',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Ceará',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Distrito Federal',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Espírito Santo',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Goiás',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Maranhão',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Mato Grosso',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Mato Grosso do Sul',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Minas Gerais',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Pará',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Paraíba',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Paraná',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Pernambuco',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Piauí',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Rio de Janeiro',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Rio Grande do Norte',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Rio Grande do Sul',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Rondônia',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Roraima',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Santa Catarina',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'São Paulo',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Sergipe',
         ] );
 
-        State::firstOrCreate( [
+        FederativeUnit::firstOrCreate( [
             'name' => 'Tocantins',
         ] );
     }
