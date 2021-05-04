@@ -13,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory(10)->create();
+        $stateSeeder = new FederativeUnitSeeder();
+        $stateSeeder->run();
+
+        $citySeeder = new CitySeeder();
+        $citySeeder->run();
     }
 }
