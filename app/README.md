@@ -46,6 +46,9 @@ A documentação está disponível no endereço:
 ```json
 {APP_URL}/api/documentation
 ```
+## Documentação do banco de dados
+
+Disponível [aqui](../database/html-docs/index.html)   
 
 ## Testes
 
