@@ -59,7 +59,7 @@ Rode os testes:
 ```json
 php artisan test --env=testing
 ```
-OBS1: Os testes resetam o banco ao rodarem.
+OBS1: Os testes resetam o banco ao rodarem.   
 OBS2: Após rodar os testes, pode ser necessário refazer o cache das configurações para a aplicação voltar a funcionar
 ```json
 php artisan config:cache
