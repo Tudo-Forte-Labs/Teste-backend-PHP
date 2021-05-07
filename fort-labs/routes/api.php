@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1'], function() {
+   Route::group(['prefix' => 'products'], function() {
+      Route::get('findAll', [\App\Http\Controllers\Api\ProductController::class, 'findAll']);
+       Route::get('findById/{id}', [\App\Http\Controllers\Api\ProductController::class, 'findById']);
+   });
 });
