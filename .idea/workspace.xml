@@ -132,7 +132,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../thebiill" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -144,7 +144,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1620307293949</updated>
-      <workItem from="1620307295158" duration="456000" />
+      <workItem from="1620307295158" duration="1041000" />
     </task>
     <servers />
   </component>
