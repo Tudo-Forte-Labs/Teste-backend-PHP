@@ -52,6 +52,13 @@ class Seller extends Authenticatable implements JWTSubject {
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sold() {
+        return $this->hasMany(Sold::class);
+    }
+
+    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed

@@ -24,10 +24,17 @@ class Sold extends Model {
     ];
 
     /**
-     * @var string[]
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    protected $appends = [
-        'total'
-    ];
+    public function product() {
+        return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function seller() {
+        return $this->belongsTo(Seller::class);
+    }
 
 }

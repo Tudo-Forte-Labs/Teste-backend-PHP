@@ -20,4 +20,11 @@ class Product extends Model {
         'cost',
         'active'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function sold() {
+        return $this->hasOne(Sold::class);
+    }
 }

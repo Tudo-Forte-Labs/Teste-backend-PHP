@@ -64,7 +64,7 @@ class SoldRepository implements SoldContract {
      */
     public function findSoldBySeller() {
         $id = auth('seller')->user()->id;
-        return $this->seller->with('products')->find($id);
+        return $this->seller->with(['sold.product'])->find($id);
     }
 
 }
