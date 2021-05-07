@@ -4,7 +4,9 @@
 namespace App\Repositories;
 
 
-interface ProductsContract
-{
+interface ProductsContract {
+
+    public function findAll();
+    public function findById(Int $id);
 
 }
