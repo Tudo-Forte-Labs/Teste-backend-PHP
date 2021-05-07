@@ -22,5 +22,9 @@ Route::group(['prefix' => 'v1'], function() {
     });
     Route::group(['middleware' => 'jwt.verify'], function(){
         Route::get('me', [\App\Http\Controllers\Api\AuthController::class, 'me']);
+        Route::group(['prefix' => 'order'], function() {
+            Route::post('store', [\App\Http\Controllers\Api\SoldController::class, 'store']);
+            Route::get('findSoldBySeller', [\App\Http\Controllers\Api\SoldController::class, 'findSoldBySeller']);
+        });
     });
 });
