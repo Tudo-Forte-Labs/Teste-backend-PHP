@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Sold extends Model {
 
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /**
      * @var string[]
@@ -16,7 +17,7 @@ class Sold extends Model {
         'address',
         'number',
         'neighborhood',
-        'date',
+        'purchase_date',
         'status',
         'product_id',
         'seller_id'
