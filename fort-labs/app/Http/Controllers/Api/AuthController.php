@@ -5,41 +5,41 @@ namespace App\Http\Controllers\Api;
 use App\Constants\ApiStatus;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\ProductsRepository as Product;
+use App\Repositories\SellerRepository as Seller;
 
-class ProductController extends Controller {
-
-    /**
-     * @var Product
-     */
-    protected $product;
+class AuthController extends Controller {
 
     /**
-     * ProductController constructor.
-     * @param Product $product
+     * @var Seller
      */
-    public function __construct(Product $product) {
-        $this->product = $product;
+    protected $seller;
+
+    /**
+     * AuthController constructor.
+     * @param Seller $seller
+     */
+    public function __construct(Seller $seller) {
+        $this->seller = $seller;
     }
 
     /**
-     * @return \Illuminate\Http\JsonResponse|mixed
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function findAll() {
+    public function authentication(Request $request) {
         try {
-            return $this->product->findAll();
+            return $this->seller->authentication($request->all());
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()], ApiStatus::internalServerError);
         }
     }
 
     /**
-     * @param $id
-     * @return \Illuminate\Http\JsonResponse|mixed
+     * @return \Illuminate\Contracts\Auth\Authenticatable|\Illuminate\Http\JsonResponse|null
      */
-    public function findById($id) {
+    public function me() {
         try {
-            return $this->product->findById($id);
+            return $this->seller->me();
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()], ApiStatus::internalServerError);
         }

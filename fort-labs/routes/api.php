@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'v1'], function() {
-   Route::group(['prefix' => 'products'], function() {
-      Route::get('findAll', [\App\Http\Controllers\Api\ProductController::class, 'findAll']);
-       Route::get('findById/{id}', [\App\Http\Controllers\Api\ProductController::class, 'findById']);
-   });
+    Route::post('authentication', [\App\Http\Controllers\Api\AuthController::class, 'authentication']);
+    Route::group(['prefix' => 'products'], function() {
+        Route::get('findAll', [\App\Http\Controllers\Api\ProductController::class, 'findAll']);
+        Route::get('findById/{id}', [\App\Http\Controllers\Api\ProductController::class, 'findById']);
+    });
+    Route::group(['middleware' => 'jwt.verify'], function(){
+        Route::get('me', [\App\Http\Controllers\Api\AuthController::class, 'me']);
+    });
 });
