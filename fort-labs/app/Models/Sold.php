@@ -9,6 +9,9 @@ class Sold extends Model {
 
     use HasFactory;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'address',
         'number',
@@ -19,6 +22,9 @@ class Sold extends Model {
         'seller_id'
     ];
 
+    /**
+     * @var string[]
+     */
     protected $appends = [
         'total'
     ];

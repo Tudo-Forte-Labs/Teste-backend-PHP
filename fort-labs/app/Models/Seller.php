@@ -10,6 +10,9 @@ class Seller extends Model {
 
     use HasFactory, SoftDeletes;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'first_name',
         'last_name',
@@ -18,10 +21,16 @@ class Seller extends Model {
         'active'
     ];
 
+    /**
+     * @var string[]
+     */
     protected $appends = [
         'full_name'
     ];
 
+    /**
+     * @param $value
+     */
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = bcrypt($value);
     }
