@@ -27,7 +27,9 @@ class Seller extends Authenticatable implements JWTSubject {
      * @var string[]
      */
     protected $appends = [
-        'full_name'
+        'full_name',
+        'total',
+        'formatted_total'
     ];
 
     /**
@@ -68,8 +70,26 @@ class Seller extends Authenticatable implements JWTSubject {
         $firstName = $this->attributes['first_name'];
         $lastName = $this->attributes['last_name'];
         return "${firstName} ${lastName}";
-
     }
+
+    public function getTotalAttribute() {
+        $id = $this->attributes['id'];
+        $collection =  Sold::where('seller_id', $id)->with('product')->get();
+        return $collection->map(function($item, $key){
+          return $item->product->cost;
+        })->sum();
+    }
+
+    public function getFormattedTotalAttribute() {
+        $id = $this->attributes['id'];
+        $collection =  Sold::where('seller_id', $id)->with('product')->get();
+        $cost = $collection->map(function($item, $key){
+            return $item->product->cost;
+        })->sum();
+
+        return monetary($cost);
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
