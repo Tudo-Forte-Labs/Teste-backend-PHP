@@ -24,6 +24,16 @@ class Sold extends Model {
     ];
 
     /**
+     * @var string[]
+     */
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y',
+        'updated_at' => 'datetime:d/m/Y',
+        'deleted_at' => 'datetime:d/m/Y',
+        'purchase_date' => 'datetime:d/m/Y',
+    ];
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function product() {

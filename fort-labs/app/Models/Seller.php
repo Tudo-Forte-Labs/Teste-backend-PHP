@@ -30,8 +30,20 @@ class Seller extends Authenticatable implements JWTSubject {
         'full_name'
     ];
 
+    /**
+     * @var string[]
+     */
     protected $hidden = [
         'password'
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $casts = [
+        'created_at' => 'datetime:d/m/Y',
+        'updated_at' => 'datetime:d/m/Y',
+        'deleted_at' => 'datetime:d/m/Y',
     ];
 
     /**
@@ -39,6 +51,14 @@ class Seller extends Authenticatable implements JWTSubject {
      */
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = bcrypt($value);
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getActiveAttribute($value) {
+        return $value === 1 ? 'Ativo' : 'Inativo';
     }
 
     /**
