@@ -22,7 +22,7 @@ class Product extends Model {
     ];
 
     /**
-     * @var string[] 
+     * @var string[]
      */
     protected $appends = [
         'formatted_cost'

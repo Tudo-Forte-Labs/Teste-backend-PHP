@@ -7,6 +7,7 @@ use App\Constants\ApiSold;
 use App\Constants\ApiStatus;
 use App\Models\Sold;
 use App\Models\Seller;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
 class SoldRepository implements SoldContract {
@@ -14,17 +15,20 @@ class SoldRepository implements SoldContract {
     /**
      * @var Sold
      * @var Seller
+     * @var Product
      */
-    protected $sold, $seller;
+    protected $sold, $seller, $product;
 
     /**
      * SoldRepository constructor.
      * @param Sold $sold
      * @param Seller $seller
+     * @param Product $product
      */
-    public function __construct(Sold $sold, Seller $seller) {
+    public function __construct(Sold $sold, Seller $seller, Product $product) {
         $this->sold = $sold;
         $this->seller = $seller;
+        $this->product = $product;
     }
 
     /**
@@ -65,6 +69,20 @@ class SoldRepository implements SoldContract {
     public function findSoldBySeller() {
         $id = auth('seller')->user()->id;
         return $this->seller->with(['sold.product'])->find($id);
+    }
+
+    public function findByNameOrRef(String $name) {
+        try {
+            $id = auth('seller')->user()->id;
+            return $this->product->where('title', 'like', '%'.$name.'%')
+                ->orWhere('ref', 'like', '%'.$name.'%')
+                ->with(['sold.seller' => function($query) use($id){
+                    $query->where('id', $id);
+                }])
+                ->get();
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()], ApiStatus::internalServerError);
+        }
     }
 
 }

@@ -25,6 +25,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::group(['prefix' => 'order'], function() {
             Route::post('store', [\App\Http\Controllers\Api\SoldController::class, 'store']);
             Route::get('findSoldBySeller', [\App\Http\Controllers\Api\SoldController::class, 'findSoldBySeller']);
+            Route::post('findByNameOrRef', [\App\Http\Controllers\Api\SoldController::class, 'findByNameOrRef']);
         });
     });
 });
