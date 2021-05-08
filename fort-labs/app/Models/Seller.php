@@ -72,6 +72,9 @@ class Seller extends Authenticatable implements JWTSubject {
         return "${firstName} ${lastName}";
     }
 
+    /**
+     * @return mixed
+     */
     public function getTotalAttribute() {
         $id = $this->attributes['id'];
         $collection =  Sold::where('seller_id', $id)->with('product')->get();
@@ -80,6 +83,9 @@ class Seller extends Authenticatable implements JWTSubject {
         })->sum();
     }
 
+    /**
+     * @return string
+     */
     public function getFormattedTotalAttribute() {
         $id = $this->attributes['id'];
         $collection =  Sold::where('seller_id', $id)->with('product')->get();
