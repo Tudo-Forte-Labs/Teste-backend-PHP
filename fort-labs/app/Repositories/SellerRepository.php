@@ -22,6 +22,24 @@ class SellerRepository implements SellerContract {
         $this->seller = $seller;
     }
 
+    public function register(Array $data) {
+        try {
+
+            
+
+            // SAVE
+            $pass = 'fortelabs1205';
+            $arr = [
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'password' => $pass
+            ];
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
+        }
+    }
+
     /**
      * @param array $data
      * @return \Illuminate\Http\JsonResponse

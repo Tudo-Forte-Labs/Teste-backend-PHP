@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\BlacklistContract;
+use App\Repositories\BlacklistRepository;
 use App\Repositories\ProductsContract;
 use App\Repositories\ProductsRepository;
 use App\Repositories\SellerContract;
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ProductsContract::class, ProductsRepository::class);
         $this->app->bind(SellerContract::class, SellerRepository::class);
         $this->app->bind(SoldContract::class, SoldRepository::class);
+        $this->app->bind(BlacklistContract::class, BlacklistRepository::class);
     }
 
     /**

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'v1'], function() {
+    Route::post('register', [\App\Http\Controllers\Api\RegisterController::class, 'register']);
     Route::post('authentication', [\App\Http\Controllers\Api\AuthController::class, 'authentication']);
     Route::group(['prefix' => 'products'], function() {
         Route::get('findAll', [\App\Http\Controllers\Api\ProductController::class, 'findAll']);
