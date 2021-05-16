@@ -23,6 +23,9 @@ Route::group(['prefix' => 'v1'], function () {
    Route::get('product/search', 'App\Http\Controllers\Api\v1\ProductController@search')
        ->name('product.search');
 
+   Route::post('product/create', 'App\Http\Controllers\Api\v1\ProductController@create')
+       ->name('product.create');
+
    Route::get('order/{order}', 'App\Http\Controllers\Api\v1\OrderController@byId')
        ->name('order.byId');
 
