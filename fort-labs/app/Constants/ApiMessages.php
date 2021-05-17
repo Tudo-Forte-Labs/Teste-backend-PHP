@@ -30,5 +30,6 @@ class ApiMessages {
     const license = 'Você precisa aceitar o termo para continuar';
     const userNotFound = 'Usuário não encontrado';
     const disapprove = 'Registro reprovado!';
+    const blocked = 'Entre em contato com administrador';
 
 }

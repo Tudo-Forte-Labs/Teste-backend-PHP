@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Constants\ApiMessages;
 use App\Constants\ApiStatus;
 use App\Models\Seller;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class SellerRepository implements SellerContract {
@@ -22,12 +23,12 @@ class SellerRepository implements SellerContract {
         $this->seller = $seller;
     }
 
+    /**
+     * @param array $data
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(Array $data) {
         try {
-
-            
-
-            // SAVE
             $pass = 'fortelabs1205';
             $arr = [
                 'first_name' => $data['first_name'],
@@ -35,6 +36,14 @@ class SellerRepository implements SellerContract {
                 'email' => $data['email'],
                 'password' => $pass
             ];
+            DB::beginTransaction();
+            $save = $this->seller->create($data);
+            if($save) {
+                return response()->json(['message' => ApiMessages::success], ApiStatus::created);
+            } else {
+                return response()->json(['message' => ApiMessages::error], ApiStatus::unprocessableEntity);
+            }
+
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'file' => $e->getFile(), 'line' => $e->getLine()]);
         }

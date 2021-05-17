@@ -96,7 +96,6 @@ class Seller extends Authenticatable implements JWTSubject {
         return monetary($cost);
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
