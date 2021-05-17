@@ -2,10 +2,12 @@
 
 namespace Tests\Unit\Services\Api\v1;
 
+use App\Exceptions\Products\ProductNotFoundException;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Product;
 use App\Models\Supplier;
+use App\Models\BlacklistedProduct;
 use App\Services\Api\v1\ProductService;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ProductServiceTest extends TestCase
@@ -13,17 +15,20 @@ class ProductServiceTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * A basic unit test example.
-     *
-     * @return void
+     * @var ProductService
      */
-    public function test_if_it_return_empty_array_when_input_is_empty()
+    private $productService;
+
+    public function setUp(): void
     {
-        $productService = new ProductService();
+        parent::setUp();
+        $this->productService = new ProductService(new BlacklistedProduct(), new Product());
+    }
 
-        $results = $productService->searchForProduct([]);
-
-        $this->assertEmpty($results);
+    public function test_if_it_throws_product_not_found_exception()
+    {
+        $this->expectException(ProductNotFoundException::class);
+        $this->productService->searchForProduct([]);
     }
 
     public function test_if_it_finds_product_by_name()
@@ -32,9 +37,7 @@ class ProductServiceTest extends TestCase
             ->for(Supplier::factory())
             ->create();
 
-        $productService = new ProductService();
-
-        $results = $productService->searchForProduct([
+        $results = $this->productService->searchForProduct([
             'name' => $product->name
         ]);
 
@@ -47,9 +50,7 @@ class ProductServiceTest extends TestCase
             ->for(Supplier::factory())
             ->create();
 
-        $productService = new ProductService();
-
-        $results = $productService->searchForProduct([
+        $results = $this->productService->searchForProduct([
             'reference' => $product->reference
         ]);
 

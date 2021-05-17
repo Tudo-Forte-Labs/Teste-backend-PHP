@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -18,7 +19,7 @@ class Product extends Model
         'supplier_id'
     ];
 
-    public function scopeWhereLike($query, $attributeName, $value)
+    public function scopeWhereLike($query, $attributeName, $value): Builder
     {
         return $query->where($attributeName, 'like', "{$value}%")
             ->orWhere($attributeName, 'like', "%{$value}%");
