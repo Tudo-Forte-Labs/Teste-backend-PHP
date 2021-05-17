@@ -28,12 +28,12 @@ class ProductService implements InterfaceSearchableProduct
     /**
      * ProductService constructor.
      *
-     * @param BlacklistedProduct $productBlacklist
+     * @param BlacklistedProduct $blacklistedProduct
      * @param Product $product
      */
-    public function __construct(BlacklistedProduct $productBlacklist, Product $product)
+    public function __construct(BlacklistedProduct $blacklistedProduct, Product $product)
     {
-        $this->productBlacklist = $productBlacklist;
+        $this->productBlacklist = $blacklistedProduct;
         $this->product = $product;
     }
 
