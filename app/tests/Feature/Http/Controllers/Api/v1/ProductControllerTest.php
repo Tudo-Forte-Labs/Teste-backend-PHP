@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Http\Controllers\Api\v1;
+namespace Tests\Feature\Http\Controllers\Api\v1;
 
 use App\Models\Product;
 use App\Models\Supplier;

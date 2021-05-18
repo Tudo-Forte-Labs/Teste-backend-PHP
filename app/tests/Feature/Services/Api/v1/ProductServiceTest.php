@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Services\Api\v1;
+namespace Tests\Feature\Services\Api\v1;
 
 use App\Exceptions\Products\ProductNotFoundException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
