@@ -1,0 +1,166 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Sistema de vendas",
+        "version": "0.1"
+    },
+    "paths": {
+        "/order/{orderId}": {
+            "get": {
+                "tags": [
+                    "order"
+                ],
+                "summary": "Finds Order by id",
+                "description": "Orders will have their products, purchase date and total price",
+                "operationId": "App\\Http\\Controllers\\Api\\v1\\OrderController::byId",
+                "parameters": [
+                    {
+                        "name": "order",
+                        "in": "query",
+                        "description": "Id of the order",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Order with specified it not found"
+                    }
+                }
+            }
+        },
+        "/order": {
+            "post": {
+                "tags": [
+                    "order"
+                ],
+                "summary": "Stores a new order",
+                "description": "Store a new order with its products and delivery address",
+                "operationId": "App\\Http\\Controllers\\Api\\v1\\OrderController::store",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "address": {
+                                        "description": "object containing delivery_address attributes",
+                                        "properties": {
+                                            "address": {
+                                                "description": "address line",
+                                                "type": "string"
+                                            },
+                                            "zip": {
+                                                "description": "zip number",
+                                                "type": "string"
+                                            },
+                                            "number": {
+                                                "description": "address number",
+                                                "type": "integer"
+                                            },
+                                            "city_id": {
+                                                "description": "id of the city",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "products": {
+                                        "description": "array of product id",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "order_date": {
+                                        "description": "the date of the order",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Object of the created order",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "Object containing information about the validatio errors",
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Order with specified it not found"
+                    }
+                }
+            }
+        },
+        "/product/search": {
+            "get": {
+                "tags": [
+                    "product"
+                ],
+                "summary": "Finds Product by name/ref",
+                "description": "Search for a product by name and/or reference",
+                "operationId": "App\\Http\\Controllers\\Api\\v1\\ProductController::search",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name of the product",
+                        "required": true
+                    },
+                    {
+                        "name": "reference",
+                        "in": "query",
+                        "description": "reference of the product",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Product with specified name or reference not found"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
