@@ -2,128 +2,61 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\v1\OrderRequest;
+use App\Http\Requests\Api\v1\Order\NewOrderRequest;
 use App\Models\Order;
 use App\Services\Api\v1\OrderService;
-use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    /**
+     * OrderService instance.
+     *
+     * @var OrderService|null
+     */
     private $orderService = null;
 
+    /**
+     * OrderController constructor.
+     *
+     * @param OrderService $orderService
+     */
     public function __construct(OrderService $orderService)
     {
         $this->orderService = $orderService;
     }
-    /** @OA\Info(title="Sistema de vendas", version="0.1") */
 
     /**
-     * @OA\Get(
-     *     path="/order/{orderId}",
-     *     tags={"order"},
-     *     summary="Finds Order by id",
-     *     description="Orders will have their products, purchase date and total price",
-     *     @OA\Parameter(
-     *         name="order",
-     *         in="query",
-     *         description="Id of the order",
-     *         required=true,
-     *     ),
-     *     @OA\Response(
-     *         response=200,
-     *         description="successful operation",
-     *         @OA\JsonContent(
-     *             type="object"
-     *         ),
-     *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="Order with specified it not found"
-     *     ),
-     *   )
+     * Return the found order with it's products and suppliers
+     *
+     * @param Request $request
+     * @param Order $order
+     * @return Response - the specified order with it's products and suppliers
      */
-    public function byId(Request $request, Order $order)
+    public function byId(Request $request, Order $order): Response
     {
-        return response($this->orderService->loadProductsAndSuppliers($order));
+        return response($this->orderService->loadProductsWithSuppliers($order));
     }
 
     /**
-     * @OA\Post(
-     *     path="/order",
-     *     tags={"order"},
-     *     summary="Stores a new order",
-     *     description="Store a new order with its products and delivery address",
-     *     @OA\RequestBody(
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 @OA\Property(
-     *                     property="address",
-     *                     type="object",
-     *                     description="object containing delivery_address attributes",
-     *                     @OA\Property(
-     *                         property="address",
-     *                         type="string",
-     *                         description="address line"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="zip",
-     *                         type="string",
-     *                         description="zip number"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="number",
-     *                         type="integer",
-     *                         description="address number"
-     *                     ),
-     *                     @OA\Property(
-     *                         property="city_id",
-     *                         type="integer",
-     *                         description="id of the city"
-     *                     ),
-     *                 ),
-     *                 @OA\Property(
-     *                     property="products",
-     *                     type="array",
-     *                     @OA\Items(
-     *                         type="integer"
-     *                     ),
-     *                     description="array of product id"
-     *                 ),
-     *                 @OA\Property(
-     *                     property="order_date",
-     *                     type="string",
-     *                     description="the date of the order"
-     *                 ),
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response=201,
-     *         description="successful operation",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             description="Object of the created order"
-     *         ),
-     *     ),
-     *     @OA\Response(
-     *         response=422,
-     *         description="Validation error",
-     *         @OA\JsonContent(
-     *             type="object",
-     *             description="Object containing information about the validatio errors"
-     *         ),
-     *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="Order with specified it not found"
-     *     ),
-     *   )
+     * Create a new order.
+     *
+     * @param NewOrderRequest $request
+     * @return Response - the newly created order
      */
-    public function store(OrderRequest $request)
+    public function store(NewOrderRequest $request): Response
     {
-        $requestData = $request->all();
+        $requestData = $request->only([
+            'address.address',
+            'address.zip',
+            'address.number',
+            'address.city_id',
+            'products',
+            'order_date'
+        ]);
+
         $createdOrder = $this->orderService
             ->storeNewOrder($requestData);
 

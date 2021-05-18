@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Http\Controllers\Api\v1;
+namespace Tests\Feature\Http\Controllers\Api\v1;
 
 use App\Models\DeliveryAddress;
 use App\Models\Order;
@@ -10,11 +10,6 @@ use Tests\TestCase;
 
 class OrderControllerTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
     public function test_if_it_returns_the_order_data()
     {
         $products = Product::factory()
